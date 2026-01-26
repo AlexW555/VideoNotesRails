@@ -1,0 +1,9 @@
+<li id="<%= dom_id(note) %>">
+  <button type="button"
+          data-action="click->video-notes#jump"
+          data-video-notes-timestamp-value="<%= note.timestamp_seconds %>">
+    <%= note.timestamp_seconds %>s
+  </button>
+
+  <span><%= note.body %></span>
+</li>

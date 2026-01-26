@@ -1,0 +1,27 @@
+<%= form_with model: note, url: notes_path do |f| %>
+  <% if note.errors.any? %>
+    <div>
+      <p><strong><%= pluralize(note.errors.count, "error") %> prevented saving:</strong></p>
+      <ul>
+        <% note.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :timestamp_seconds, value: note.timestamp_seconds || 0,
+        data: { "video-notes-target": "timestamp" } %>
+
+  <div>
+    <%= f.text_area :body, rows: 3, placeholder: "Write a note…" %>
+  </div>
+
+  <div>
+    <button type="button" data-action="click->video-notes#stampNow">
+      Use current time
+    </button>
+
+    <%= f.submit "Save note" %>
+  </div>
+<% end %>

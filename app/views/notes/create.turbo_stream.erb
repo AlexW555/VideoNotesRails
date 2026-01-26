@@ -1,0 +1,13 @@
+<% if @note.errors.any? %>
+  <%= turbo_stream.replace "note_form" do %>
+    <%= render "notes/form", note: @note %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "notes" do %>
+    <%= render "notes/note", note: @note %>
+  <% end %>
+
+  <%= turbo_stream.replace "note_form" do %>
+    <%= render "notes/form", note: Note.new(timestamp_seconds: @note.timestamp_seconds) %>
+  <% end %>
+<% end %>
