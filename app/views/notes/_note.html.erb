@@ -1,9 +1,14 @@
-<li id="<%= dom_id(note) %>">
+<li id="<%= dom_id(note) %>"
+    class="group flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-3 hover:border-blue-200 hover:bg-blue-50/30">
   <button type="button"
           data-action="click->video-notes#jump"
-          data-video-notes-timestamp-value="<%= note.timestamp_seconds %>">
-    <%= note.timestamp_seconds %>s
+          data-video-notes-timestamp-value="<%= note.timestamp_seconds %>"
+          class="shrink-0 rounded-lg bg-gray-900 px-2 py-1 text-xs font-semibold text-white group-hover:bg-blue-700">
+    <span class="tabular-nums"><%= format_timestamp(note.timestamp_seconds) %></span>s
   </button>
 
-  <span><%= note.body %></span>
+  <div class="min-w-0">
+    <p class="text-sm text-gray-900"><%= note.body %></p>
+    <p class="mt-1 text-xs text-gray-500"><%= note.created_at.strftime("%-d %b %Y • %H:%M") %></p>
+  </div>
 </li>

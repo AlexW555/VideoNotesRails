@@ -1,8 +1,8 @@
-<%= form_with model: note, url: notes_path, data: { turbo: true, controller: "form-debug" } do |f| %>
+<%= form_with model: note, url: notes_path, data: { turbo: true } do |f| %>
   <% if note.errors.any? %>
-    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded">
-      <p><strong><%= pluralize(note.errors.count, "error") %> prevented saving:</strong></p>
-      <ul class="list-disc list-inside">
+    <div class="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-800">
+      <p class="font-semibold"><%= pluralize(note.errors.count, "error") %> prevented saving:</p>
+      <ul class="mt-2 list-disc pl-5">
         <% note.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -10,28 +10,31 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :timestamp_seconds, value: note.timestamp_seconds || 0,
+  <%= f.hidden_field :timestamp_seconds,
+        value: note.timestamp_seconds || 0,
         data: { "video-notes-target": "timestampInput" } %>
 
-  <div class="mb-4">
-    <%= f.text_area :body, rows: 3, placeholder: "Write a note…", 
-        class: "w-full p-2 border border-gray-300 rounded" %>
-  </div>
+  <label class="block text-sm font-medium text-gray-700">Note</label>
+  <%= f.text_area :body,
+        rows: 4,
+        placeholder: "What do you want to remember about this moment?",
+        class: "mt-2 w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200" %>
 
-  <div class="flex gap-2 mb-4">
-    <button
-      type="button"
-      data-action="click->video-notes#stampNow"
-      class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-      Stamp Now
-    </button>
-    
-    <span class="px-3 py-1 bg-gray-100 rounded">
-      Time: <span data-video-notes-target="timestampDisplay"><%= note.timestamp_seconds || 0 %></span>s
-    </span>
-  </div>
+  <div class="mt-4 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        data-action="click->video-notes#stampNow"
+        class="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+        Stamp current time
+      </button>
 
-  <div>
-    <%= f.submit "Save note", class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
+      <div class="rounded-lg bg-gray-100 px-3 py-2 text-sm text-gray-700">
+        Time: <span class="font-semibold tabular-nums" data-video-notes-target="timestampDisplay"><%= note.timestamp_seconds || 0 %></span>s
+      </div>
+    </div>
+
+    <%= f.submit "Save note",
+      class: "rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-700" %>
   </div>
 <% end %>
