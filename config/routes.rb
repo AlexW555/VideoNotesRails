@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "video#show"
 
-  resource :video, only: [:show]
+  resource :video, only: [:show], controller: "video"
   resources :notes, only: [:create]
 end

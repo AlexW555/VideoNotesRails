@@ -1,13 +1,19 @@
-<div>
-  <h1>Video Notes</h1>
+<div data-controller="video-notes">
+<h1>Video Notes</h1>
 
-  <div id="note_form">
-    <%= render "notes/form", note: @note %>
-  </div>
+<mux-player
+  id="player"
+  playback-id="OfjbQ3esQifgboENTs4oDXslCP5sSnst"
+  controls
+  style="width: 100%; max-width: 900px; aspect-ratio: 16/9;"
+></mux-player>
 
-  <h2>Notes</h2>
-  <ul id="notes">
-    <%= render @notes %>
-  </ul>
+<div id="note_form">
+  <%= render "notes/form", note: @note %>
 </div>
 
+<h2>Notes</h2>
+<ul id="notes">
+  <%= render @notes %>
+</ul>
+</div>

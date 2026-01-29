@@ -1,8 +1,8 @@
-<%= form_with model: note, url: notes_path do |f| %>
+<%= form_with model: note, url: notes_path, data: { turbo: true, controller: "form-debug" } do |f| %>
   <% if note.errors.any? %>
-    <div>
+    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded">
       <p><strong><%= pluralize(note.errors.count, "error") %> prevented saving:</strong></p>
-      <ul>
+      <ul class="list-disc list-inside">
         <% note.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
@@ -11,17 +11,27 @@
   <% end %>
 
   <%= f.hidden_field :timestamp_seconds, value: note.timestamp_seconds || 0,
-        data: { "video-notes-target": "timestamp" } %>
+        data: { "video-notes-target": "timestampInput" } %>
 
-  <div>
-    <%= f.text_area :body, rows: 3, placeholder: "Write a note…" %>
+  <div class="mb-4">
+    <%= f.text_area :body, rows: 3, placeholder: "Write a note…", 
+        class: "w-full p-2 border border-gray-300 rounded" %>
+  </div>
+
+  <div class="flex gap-2 mb-4">
+    <button
+      type="button"
+      data-action="click->video-notes#stampNow"
+      class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+      Stamp Now
+    </button>
+    
+    <span class="px-3 py-1 bg-gray-100 rounded">
+      Time: <span data-video-notes-target="timestampDisplay"><%= note.timestamp_seconds || 0 %></span>s
+    </span>
   </div>
 
   <div>
-    <button type="button" data-action="click->video-notes#stampNow">
-      Use current time
-    </button>
-
-    <%= f.submit "Save note" %>
+    <%= f.submit "Save note", class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
   </div>
 <% end %>
