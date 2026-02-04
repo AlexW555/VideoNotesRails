@@ -49,6 +49,9 @@ group :development, :test do
   # RSpec testing framework
   gem "rspec-rails"
 
+  # Load environment variables from .env file
+  gem "dotenv-rails"
+
   # Audits gems for known security defects (use config/bundler-audit.yml to ignore issues)
   gem "bundler-audit", require: false
 
