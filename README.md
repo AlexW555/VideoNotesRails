@@ -1,24 +1,23 @@
-# README
+# Video Notes (Rails 8 + Turbo + Mux)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple “video notes” feature: take timestamped notes while watching a Mux-hosted video. Notes save via Turbo Streams (no full reload). Clicking a note jumps the player to that timestamp.
 
-Things you may want to cover:
+## Requirements
+- Ruby
+- Rails 8
+- SQLite (default) 
+- Node is **not** required (Tailwind via `tailwindcss-rails`)
 
-* Ruby version
+## Setup
 
-* System dependencies
+```bash
+bin/setup
+# or:
+bundle install
+bin/rails db:prepare
 
-* Configuration
 
-* Database creation
+## Run locally
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+bin/rails s
+bin/rails tailwindcss:watch
