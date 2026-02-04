@@ -8,6 +8,12 @@ A simple “video notes” feature: take timestamped notes while watching a Mux-
 - SQLite (default) 
 - Node is **not** required (Tailwind via `tailwindcss-rails`)
 
+## Demo
+<video src="https://github.com/AlexW555/VideoNotesRails/blob/main/sdemo.mp4" controls></video>
+https://github.com/AlexW555/VideoNotesRails/blob/main/sdemo.mp4
+
+
+
 ## Features
 - Ability to add notes with or without a timestamp of a video
 - Click on a timestamp to jump to video
